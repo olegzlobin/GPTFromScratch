@@ -44,6 +44,9 @@ Advanced positional encoding from:
 - Hugging Face datasets integration
 - Configurable hyperparameters
 
+## Results
+1. A dataset named [simple_algebra_1m](https://huggingface.co/datasets/ozlobin/simple_algebra_1m) has been created for testing small language models. 
+
 ## Resources
 1. Minimal GPT implementation reference:  
    [karpathy/minGPT](https://github.com/karpathy/minGPT)

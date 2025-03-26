@@ -38,6 +38,9 @@
 - Сохранение относительных позиционных отношений
 - Повышенная эффективность для длинных последовательностей
 
+## Результаты
+1. Создан датасет [simple_algebra_1m](https://huggingface.co/datasets/ozlobin/simple_algebra_1m) для тестирования крошечных LM
+
 ## Источники и ссылки
 1. Базовый пример реализации GPT:  
    [minGPT от karpathy](https://github.com/karpathy/minGPT)
