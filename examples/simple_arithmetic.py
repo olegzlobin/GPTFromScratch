@@ -3,6 +3,7 @@ import torch
 
 from gpt.core.model.gpt2 import GPT
 from gpt.core.model.hf_wrapper import HuggingfaceWrapper
+from gpt.core.utils.autoregressive_inference import autoregressive_print
 from gpt.core.utils.show_params import print_model_parameters
 from gpt.data.dataloaders.simple_math import get_math_dataset
 
@@ -66,3 +67,5 @@ trainer = Trainer(
 
 
 trainer.train()
+
+autoregressive_print()
