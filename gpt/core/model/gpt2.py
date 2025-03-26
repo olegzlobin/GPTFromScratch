@@ -19,7 +19,6 @@ class GPT(nn.Module):
 
         self.ln_f = nn.LayerNorm(n_embd)
         self.apply(self._init_weights)
-        self.loss_fct = nn.CrossEntropyLoss()
 
     @staticmethod
     def _init_weights(module):
@@ -33,27 +32,15 @@ class GPT(nn.Module):
             torch.nn.init.ones_(module.weight)
             torch.nn.init.zeros_(module.bias)
 
-    def get_loss(self, logits, labels):
-        shift_logits = logits[..., :-1, :].contiguous()
-        shift_labels = labels[..., 1:].contiguous()
-        return self.loss_fct(shift_logits.view(-1, self.vocab_size), shift_labels.view(-1))
-
-    def forward(self, input_ids, attention_mask=None, labels=None):
+    def forward(self, input_ids):
 
         token_embeddings = self.tok_emb(input_ids)
-
-        if attention_mask is not None:
-            token_embeddings = token_embeddings * attention_mask.unsqueeze(-1)
 
         x = token_embeddings
         x = self.blocks(x)
         x = self.ln_f(x)
         logits = torch.matmul(x, self.tok_emb.weight.transpose(0, 1))
-
-        if labels is not None:
-            return {"loss": self.get_loss(logits, labels),
-                    "logits": logits}
-        return {"logits": logits}
+        return logits
 
 
 class Block(nn.Module):
